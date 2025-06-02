@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Voice Agent 3.0 - Shion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Step 1: Welcome -->
+        <div class="step active" id="step-welcome">
+            <div class="container">
+                <div class="hero-section">
+                    <div class="agent-avatar"></div>
+                    <h1 class="hero-title">Meet Shion</h1>
+                    <p class="hero-subtitle">Your AI Voice Psychology Companion</p>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>Voice Analysis</h3>
+                            <p>Advanced AI analyzes vocal patterns to understand your emotional state</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Personalized Insights</h3>
+                            <p>Receive tailored mental wellness recommendations based on your unique profile</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Science-Based</h3>
+                            <p>Backed by psychological research and behavioral change theories</p>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary btn--lg btn--full-width" onclick="nextStep()">Begin Your Journey</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Consent -->
+        <div class="step" id="step-consent">
+            <div class="container">
+                <div class="form-section">
+                    <h2>Privacy & Consent</h2>
+                    <div class="consent-content">
+                        <p>Before we begin, please review how Shion handles your data:</p>
+                        <div class="privacy-cards">
+                            <div class="privacy-card">
+                                <h4>Voice Recording</h4>
+                                <p>Your voice is analyzed locally and not stored permanently</p>
+                            </div>
+                            <div class="privacy-card">
+                                <h4>Personal Information</h4>
+                                <p>Demographic data is used only for personalized recommendations</p>
+                            </div>
+                            <div class="privacy-card">
+                                <h4>Data Security</h4>
+                                <p>All information is processed securely and never shared with third parties</p>
+                            </div>
+                        </div>
+                        <div class="consent-checkbox">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="consent-check">
+                                <span class="checkmark"></span>
+                                I consent to voice analysis and understand my data privacy rights
+                            </label>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn--secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn--primary" onclick="nextStep()" id="consent-btn" disabled>Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Demographics -->
+        <div class="step" id="step-demographics">
+            <div class="container">
+                <div class="form-section">
+                    <h2>About You</h2>
+                    <p>Help Shion understand your background for personalized insights</p>
+                    <form class="demographics-form">
+                        <div class="form-group">
+                            <label class="form-label" for="age-group">Age Group</label>
+                            <select class="form-control" id="age-group" name="age-group" required>
+                                <option value="" disabled selected>Select your age group</option>
+                                <option value="18-25">18-25 years</option>
+                                <option value="26-35">26-35 years</option>
+                                <option value="36-45">36-45 years</option>
+                                <option value="46-55">46-55 years</option>
+                                <option value="56-65">56-65 years</option>
+                                <option value="65+">65+ years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="gender">Gender Identity</label>
+                            <select class="form-control" id="gender" name="gender" required>
+                                <option value="" disabled selected>Select your gender identity</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="non_binary">Non-binary</option>
+                                <option value="prefer_not_to_say">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="occupation">Occupation Type</label>
+                            <select class="form-control" id="occupation" name="occupation" required>
+                                <option value="" disabled selected>Select your occupation type</option>
+                                <option value="student">Student</option>
+                                <option value="office_worker">Office Worker</option>
+                                <option value="healthcare">Healthcare Professional</option>
+                                <option value="education">Education</option>
+                                <option value="service">Service Industry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="button-group">
+                        <button class="btn btn--secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn--primary" onclick="nextStep()" id="demographics-btn" disabled>Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Lifestyle -->
+        <div class="step" id="step-lifestyle">
+            <div class="container">
+                <div class="form-section">
+                    <h2>Lifestyle Assessment</h2>
+                    <p>Understanding your daily habits helps Shion provide better recommendations</p>
+                    <div class="lifestyle-grid">
+                        <div class="lifestyle-card">
+                            <label class="form-label">Sleep Quality (1-10)</label>
+                            <div class="slider-container">
+                                <input type="range" class="range-slider" id="sleep-quality" min="1" max="10" value="7">
+                                <span class="slider-value" id="sleep-value">7</span>
+                            </div>
+                        </div>
+                        <div class="lifestyle-card">
+                            <label class="form-label" for="exercise-frequency">Exercise Frequency</label>
+                            <select class="form-control" id="exercise-frequency" name="exercise-frequency">
+                                <option value="never">Never</option>
+                                <option value="rarely">Rarely (less than once a week)</option>
+                                <option value="weekly" selected>Weekly (1-2 times per week)</option>
+                                <option value="several_times_week">Several times a week (3-4 times)</option>
+                                <option value="daily">Daily</option>
+                            </select>
+                        </div>
+                        <div class="lifestyle-card">
+                            <label class="form-label">Stress Level (1-10)</label>
+                            <div class="slider-container">
+                                <input type="range" class="range-slider" id="stress-level" min="1" max="10" value="5">
+                                <span class="slider-value" id="stress-value">5</span>
+                            </div>
+                        </div>
+                        <div class="lifestyle-card">
+                            <label class="form-label">Social Support (1-10)</label>
+                            <div class="slider-container">
+                                <input type="range" class="range-slider" id="social-support" min="1" max="10" value="7">
+                                <span class="slider-value" id="social-value">7</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn--secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn--primary" onclick="nextStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Health History -->
+        <div class="step" id="step-health">
+            <div class="container">
+                <div class="form-section">
+                    <h2>Health Background</h2>
+                    <p>This information helps Shion provide appropriate and safe recommendations</p>
+                    <div class="health-form">
+                        <div class="form-group">
+                            <label class="form-label" for="mental-health-history">Mental Health History</label>
+                            <select class="form-control" id="mental-health-history" name="mental-health-history">
+                                <option value="none" selected>No history</option>
+                                <option value="anxiety">Anxiety</option>
+                                <option value="depression">Depression</option>
+                                <option value="other">Other</option>
+                                <option value="prefer_not_to_say">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="medications">Current Medications</label>
+                            <select class="form-control" id="medications" name="medications">
+                                <option value="none" selected>None</option>
+                                <option value="antidepressants">Antidepressants</option>
+                                <option value="anti_anxiety">Anti-anxiety medication</option>
+                                <option value="other">Other medications</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Wellness Motivation (1-10)</label>
+                            <div class="slider-container">
+                                <input type="range" class="range-slider" id="wellness-motivation" min="1" max="10" value="8">
+                                <span class="slider-value" id="wellness-value">8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn--secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn--primary" onclick="nextStep()">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Recording Setup -->
+        <div class="step" id="step-setup">
+            <div class="container">
+                <div class="setup-section">
+                    <h2>Voice Recording Setup</h2>
+                    <p>Let's test your microphone to ensure optimal voice analysis</p>
+                    <div class="mic-test-container">
+                        <div class="mic-visualization">
+                            <div class="mic-icon"></div>
+                            <div class="audio-levels">
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                                <div class="level-bar"></div>
+                            </div>
+                        </div>
+                        <div class="mic-status">
+                            <p id="mic-status-text">Click "Test Microphone" to begin</p>
+                        </div>
+                        <button class="btn btn--primary" id="test-mic-btn" onclick="testMicrophone()">Test Microphone</button>
+                    </div>
+                    <div class="setup-instructions">
+                        <h4>For best results:</h4>
+                        <ul>
+                            <li>Find a quiet environment</li>
+                            <li>Speak at a comfortable volume</li>
+                            <li>Keep your device close but not too close</li>
+                            <li>Ensure stable internet connection</li>
+                        </ul>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn--secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn--primary" onclick="nextStep()" id="setup-continue-btn" disabled>Continue to Recording</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 7: Voice Analysis -->
+        <div class="step" id="step-recording">
+            <div class="container">
+                <div class="recording-section">
+                    <h2>Voice Analysis Session</h2>
+                    <p>Speak naturally for 30-60 seconds while Shion analyzes your voice patterns</p>
+                    <div class="holographic-container">
+                        <div class="holographic-sphere" id="holographic-sphere">
+                            <div class="sphere-inner">
+                                <div class="particle-system">
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                    <div class="particle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recording-controls">
+                            <button class="btn btn--primary btn--lg recording-btn" id="record-btn" onclick="startRecording()">
+                                <span class="record-icon"></span>
+                                Start Recording
+                            </button>
+                            <div class="recording-timer" id="recording-timer">00:00</div>
+                        </div>
+                    </div>
+                    <div class="recording-prompt">
+                        <h4>Suggested talking points:</h4>
+                        <p>"Tell me about how you've been feeling lately. Describe your day, any challenges you're facing, or something positive that happened recently."</p>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn--secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn--primary" onclick="nextStep()" id="recording-continue-btn" disabled>Analyze Recording</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 8: Processing -->
+        <div class="step" id="step-processing">
+            <div class="container">
+                <div class="processing-section">
+                    <h2>Analyzing Your Voice</h2>
+                    <p>Shion is processing your voice patterns using advanced AI algorithms</p>
+                    <div class="processing-visualization">
+                        <div class="processing-sphere">
+                            <div class="analysis-waves">
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                            </div>
+                        </div>
+                        <div class="processing-steps">
+                            <div class="processing-step active" id="step-pitch">
+                                <div class="step-icon"></div>
+                                <span>Analyzing pitch patterns</span>
+                            </div>
+                            <div class="processing-step" id="step-jitter">
+                                <div class="step-icon"></div>
+                                <span>Measuring voice stability</span>
+                            </div>
+                            <div class="processing-step" id="step-energy">
+                                <div class="step-icon"></div>
+                                <span>Evaluating energy levels</span>
+                            </div>
+                            <div class="processing-step" id="step-complete">
+                                <div class="step-icon"></div>
+                                <span>Generating insights</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="processing-message">
+                        <p id="processing-message">Initializing voice analysis...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 9: Results -->
+        <div class="step" id="step-results">
+            <div class="container">
+                <div class="results-section">
+                    <h2>Your Voice Analysis Results</h2>
+                    <p>Based on your voice patterns, here's what Shion discovered about your current state</p>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <h4>Emotional State</h4>
+                            <div class="result-indicator" id="emotional-result">
+                                <div class="indicator-circle balanced"></div>
+                                <span>Balanced</span>
+                            </div>
+                            <p id="emotional-description">Your voice shows signs of emotional stability with moderate energy levels.</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Stress Indicators</h4>
+                            <div class="result-indicator" id="stress-result">
+                                <div class="indicator-circle low"></div>
+                                <span>Low</span>
+                            </div>
+                            <p id="stress-description">Voice patterns indicate relatively low stress levels.</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Energy Level</h4>
+                            <div class="result-indicator" id="energy-result">
+                                <div class="indicator-circle moderate"></div>
+                                <span>Moderate</span>
+                            </div>
+                            <p id="energy-description">Your vocal energy suggests a balanced state of alertness.</p>
+                        </div>
+                    </div>
+                    <div class="shion-message">
+                        <div class="agent-avatar-small"></div>
+                        <div class="message-content">
+                            <h4>Shion's Analysis</h4>
+                            <p id="shion-analysis">"Based on your voice patterns and personal profile, I've identified some key areas where we can enhance your wellbeing. Let me share some personalized recommendations."</p>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn--secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn--primary" onclick="nextStep()">View Recommendations</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 10: Recommendations -->
+        <div class="step" id="step-recommendations">
+            <div class="container">
+                <div class="recommendations-section">
+                    <h2>Personalized Recommendations</h2>
+                    <p>Shion has curated these wellness strategies specifically for you</p>
+                    <div class="recommendation-categories">
+                        <div class="category-tab active" onclick="showCategory('selfcare')">Self-Care</div>
+                        <div class="category-tab" onclick="showCategory('mindfulness')">Mindfulness</div>
+                        <div class="category-tab" onclick="showCategory('physical')">Physical Activity</div>
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="category-content active" id="selfcare-content">
+                            <div class="recommendation-grid" id="selfcare-recommendations">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="category-content" id="mindfulness-content">
+                            <div class="recommendation-grid" id="mindfulness-recommendations">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="category-content" id="physical-content">
+                            <div class="recommendation-grid" id="physical-recommendations">
+                                <!-- Populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn--secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn--primary" onclick="nextStep()">Create Action Plan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 11: Action Planning -->
+        <div class="step" id="step-planning">
+            <div class="container">
+                <div class="planning-section">
+                    <h2>Your Action Plan</h2>
+                    <p>Let's create a realistic plan based on your readiness to change</p>
+                    <div class="ttm-assessment">
+                        <h4>How ready are you to make wellness changes?</h4>
+                        <div class="ttm-options">
+                            <label class="ttm-option">
+                                <input type="radio" name="ttm-stage" value="precontemplation">
+                                <div class="option-content">
+                                    <h5>Not thinking about it</h5>
+                                    <p>I'm not really considering changes right now</p>
+                                </div>
+                            </label>
+                            <label class="ttm-option">
+                                <input type="radio" name="ttm-stage" value="contemplation">
+                                <div class="option-content">
+                                    <h5>Thinking about it</h5>
+                                    <p>I'm considering making some changes</p>
+                                </div>
+                            </label>
+                            <label class="ttm-option">
+                                <input type="radio" name="ttm-stage" value="preparation">
+                                <div class="option-content">
+                                    <h5>Getting ready</h5>
+                                    <p>I'm preparing to make changes soon</p>
+                                </div>
+                            </label>
+                            <label class="ttm-option">
+                                <input type="radio" name="ttm-stage" value="action">
+                                <div class="option-content">
+                                    <h5>Taking action</h5>
+                                    <p>I'm ready to start implementing changes</p>
+                                </div>
+                            </label>
+                            <label class="ttm-option">
+                                <input type="radio" name="ttm-stage" value="maintenance">
+                                <div class="option-content">
+                                    <h5>Maintaining progress</h5>
+                                    <p>I want to maintain current healthy habits</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="action-plan" id="action-plan-content">
+                        <!-- Populated based on TTM stage selection -->
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn--secondary" onclick="prevStep()">Back</button>
+                        <button class="btn btn--primary" onclick="nextStep()">Complete Session</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 12: Completion -->
+        <div class="step" id="step-completion">
+            <div class="container">
+                <div class="completion-section">
+                    <div class="completion-hero">
+                        <div class="success-icon"></div>
+                        <h2>Session Complete!</h2>
+                        <p>Thank you for trusting Shion with your wellness journey</p>
+                    </div>
+                    <div class="session-summary">
+                        <h4>Your Session Summary</h4>
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <h5>Voice Analysis Completed</h5>
+                                <p>Emotional state and stress indicators assessed</p>
+                            </div>
+                            <div class="summary-card">
+                                <h5>Personalized Recommendations</h5>
+                                <p>Tailored wellness strategies provided</p>
+                            </div>
+                            <div class="summary-card">
+                                <h5>Action Plan Created</h5>
+                                <p>Step-by-step approach based on your readiness</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="next-steps">
+                        <h4>What's Next?</h4>
+                        <div class="next-step-options">
+                            <button class="btn btn--primary" onclick="restartSession()">Start New Session</button>
+                            <button class="btn btn--secondary" onclick="downloadResults()">Download Results</button>
+                        </div>
+                    </div>
+                    <div class="shion-farewell">
+                        <div class="agent-avatar-large"></div>
+                        <div class="farewell-message">
+                            <p>"Remember, your wellness journey is unique. I'm here whenever you need guidance. Take care of yourself!"</p>
+                            <span>- Shion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="step-indicators">
+                <div class="step-indicator active" data-step="1"></div>
+                <div class="step-indicator" data-step="2"></div>
+                <div class="step-indicator" data-step="3"></div>
+                <div class="step-indicator" data-step="4"></div>
+                <div class="step-indicator" data-step="5"></div>
+                <div class="step-indicator" data-step="6"></div>
+                <div class="step-indicator" data-step="7"></div>
+                <div class="step-indicator" data-step="8"></div>
+                <div class="step-indicator" data-step="9"></div>
+                <div class="step-indicator" data-step="10"></div>
+                <div class="step-indicator" data-step="11"></div>
+                <div class="step-indicator" data-step="12"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
